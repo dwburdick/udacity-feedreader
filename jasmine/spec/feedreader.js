@@ -90,5 +90,38 @@ $(function() {
 
     });
 
+    describe('Add Feed Button', function() {
+
+        var initialSet,
+            initialLength,
+            newSet,
+            newLength;
+
+        var testFeed = {
+            name: 'New York Times Most Shared Items',
+            url: 'http://rss.nytimes.com/services/xml/rss/nyt/MostShared.xml'
+        };
+
+        beforeEach(function(done) {
+            initialSet = allFeeds;
+            initialLength = $('.feed-list').children().length;
+            addFeed(testFeed);
+            newSet = allFeeds;
+            newLength = $('.feed-list').children().length;
+            done();
+        });
+
+        it('should add a feed to the array', function() {
+            expect(allFeeds[newLength].url).toBeDefined();
+            expect(allFeeds[newLength].url).not.toBe('');
+            expect(allFeeds[newLength].name).toBeDefined();
+            expect(allFeeds[newLength].name).not.toBe('');
+        });
+
+        it('should add an option to the menu', function() {
+            expect(initialLength === newLength).toBe(false);
+        });
+
+    });
 
 }());
