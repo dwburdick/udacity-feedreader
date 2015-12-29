@@ -54,19 +54,23 @@ $(function() {
             expect($("body").hasClass("menu-hidden")).toBe(false);
             $('.menu-icon-link').click();
             expect($("body").hasClass("menu-hidden")).toBe(true);
-        })
+        });
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
-
-
-    })
+    });
     
-    /* TODO: Write a new test suite named "Initial Entries" */
+    describe('Initial entries', function() {
 
+        beforeEach(function(done) {
+            loadFeed(0, done);
+        });
+
+        it('should have at least one item', function() {
+            var areEntries = $('.feed').has('.entry').length;
+            expect(areEntries).not.toBe(0);
+        });
+
+    });
+   
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
