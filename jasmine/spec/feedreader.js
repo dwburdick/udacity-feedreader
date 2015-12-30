@@ -68,7 +68,7 @@ $(function() {
 
         it('should have at least one item', function() {
             var areEntries = $('.feed .entry');
-            expect(areEntries).not.toBe(0);
+            expect(areEntries).toBeGreaterThan(0);
         });
 
     });
