@@ -79,22 +79,24 @@ $(function() {
         /* This tests to make sure the content of the page changes
          * when a new feed is chosen.
          */
-        var firstFeed,
-            secondFeed;
+        // firstFeed,
+        //    secondFeed;
 
         beforeEach(function(done) {
             loadFeed(0, function() {
+                firstFeed = $('.feed .entry').find("h2").text();
+                console.log(firstFeed);
                 done();
-            });
-            firstFeed = $('.feed');
-            loadFeed(1, function() {
-                done();
-            });
-            secondFeed = $('.feed');
+            });       
         });
 
-        it('should change content on the page', function() {
-            expect(firstFeed).not.toBe(secondFeed);
+        it('should change content on the page', function(done) { 
+            loadFeed(1, function() {
+                secondFeed = $('.feed .entry').find("h2").text();
+                console.log(secondFeed);
+                expect(firstFeed).not.toBe(secondFeed);
+                done();
+            });     
         });
 
     });
