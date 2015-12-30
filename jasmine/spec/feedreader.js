@@ -63,12 +63,14 @@ $(function() {
          * available when the page loads.
          */
         beforeEach(function(done) {
-            loadFeed(0, done);
+            loadFeed(0, function() {
+                done();
+            });
         });
 
         it('should have at least one item', function() {
             var areEntries = $('.feed .entry');
-            expect(areEntries).toBeGreaterThan(0);
+            expect(areEntries.length).toBeGreaterThan(0);
         });
 
     });
