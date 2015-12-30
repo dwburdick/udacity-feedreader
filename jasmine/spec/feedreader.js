@@ -15,17 +15,14 @@ $(function() {
     */
     describe('RSS Feeds', function() {
         /* This is our first test - it tests to make sure that the
-         * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
+         * allFeeds variable has been defined, that it is not
+         * empty, and that it has a name that is also defined and
+         * not empty. 
          */
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
-
 
         it('have defined URLs', function() {
             for (var i = 0, len = allFeeds.length; i < len; i++) {
@@ -44,7 +41,10 @@ $(function() {
     });
 
     describe('The menu', function() {
-
+        /* This is our second test - it tests to make sure that the
+         * menu is hidden by default, and that it toggles visibility
+         * when clicked.
+         */
         it('is hidden by default', function() {
             expect($("body").hasClass("menu-hidden")).toBe(true);
         });
@@ -59,7 +59,9 @@ $(function() {
     });
     
     describe('Initial entries', function() {
-
+        /* This tests to make sure that at least one item is
+         * available when the page loads.
+         */
         beforeEach(function(done) {
             loadFeed(0, done);
         });
@@ -72,7 +74,9 @@ $(function() {
     });
    
     describe('New Feed Selection', function() {
-
+        /* This tests to make sure the content of the page changes
+         * when a new feed is chosen.
+         */
         var firstFeed,
             secondFeed;
 
@@ -80,18 +84,20 @@ $(function() {
             loadFeed(0);
             firstFeed = $('.feed');
             loadFeed(1);
-            secondFeed = $('.feed');
             done();
         });
 
         it('should change content on the page', function() {
+            secondFeed = $('.feed');
             expect(firstFeed === secondFeed).toBe(false);           
         });
 
     });
 
     describe('Add Feed Button', function() {
-
+        /* This tests to make sure the Add Feed Button causes a feed
+         * to appear in the menu as well as in the array.
+         */
         var initialSet,
             initialLength,
             newSet,
