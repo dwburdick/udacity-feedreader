@@ -81,15 +81,18 @@ $(function() {
             secondFeed;
 
         beforeEach(function(done) {
-            loadFeed(0);
+            loadFeed(0, function() {
+                done();
+            });
             firstFeed = $('.feed');
-            loadFeed(1);
-            done();
+            loadFeed(1, function() {
+                done();
+            });
+            secondFeed = $('.feed');
         });
 
         it('should change content on the page', function() {
-            secondFeed = $('.feed');
-            expect(firstFeed === secondFeed).toBe(false);           
+            expect(firstFeed).not.toBe(secondFeed);
         });
 
     });
